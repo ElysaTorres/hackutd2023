@@ -1,43 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <title>Fannie Mae Mortgage Eligibility Survey</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;900&display=swap");
+
+      /* Reset margin and padding for every element */
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Organize color scheme into root */
+      :root {
+        --bg: #fff;
+        --button: #3e53a6;
+        --nav: rgb(5, 49, 77);
+      }
+
+      /* Styling the Body element i.e. Color, 
+    Font, Alignment */
+      body {
+        background-color: var(--bg);
+        font-family: "Source Sans 3", sans-serif;
+        text-align: center;
+      }
+
+      /* Styling the Form (Color, Padding, Shadow) */
+      #questionnaire-form {
+        background-color: var(--bg);
+        max-width: 600px;
+        margin: 0 auto;
+        padding-top: 25px;
+      }
+
+      /* Styling form-control Class */
+      .form-control {
+        text-align: left;
+        margin-bottom: 25px;
+      }
+
+      /* Styling form-control Label */
+      .form-control label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      /* Styling form-control input, 
+    select, textarea */
+      .form-control input,
+      .form-control select,
+      .form-control textarea {
+        border: 1px solid #777;
+        border-radius: 5px;
+        font-family: inherit;
+        font-size: 18px;
+        padding: 10px;
+        width: 100%;
+      }
+
+      /* Styling form-control Radio 
+    button and Checkbox */
+      .form-control input[type="radio"],
+      .form-control input[type="checkbox"] {
+        display: inline-block;
+        width: auto;
+      }
+
+      /* Styling Button */
+      .form-button {
+        background-color: var(--button);
+        color: var(--bg);
+        border: 0px;
+        border-radius: 5px;
+        font-size: 21px;
+        padding: 8px 16px;
+        font-weight: 600;
+        font-family: inherit;
+      }
+
+      .form-button:hover {
+        opacity: 0.8;
+        transition: 0.2s;
+        cursor: pointer;
+      }
+
+      nav {
+        background-color: var(--nav);
+        height: 60px;
+      }
+
+      #questionnaire-page {
+        background-color: var(--bg);
+        width: 800px;
+        margin: 0 auto 20px auto;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .background-flare-L,
+      .background-flare-R {
+        flex: 1;
+        justify-self: stretch;
+        align-items: stretch;
+      }
+
+      .background-flare-L {
+        background: linear-gradient(to right, var(--button) 0%, var(--bg) 100%);
+      }
+
+      .background-flare-R {
+        background: linear-gradient(to right, var(--bg) 0%, var(--button) 100%);
+      }
+
+      #main-content {
+        display: none;
+      }
+
+      #login-page {
+        background-color: var(--bg);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        right: 0;
+      }
+
+      #login-image {
+        height: 100%;
+        transform: translateX(-50%);
+      }
+
+      #login-left {
+        overflow: hidden;
+        text-align: center;
+        width: 300px;
+        height: calc(100vh - 60px);
+      }
+
+      #login-right {
+        flex: 1;
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+        justify-content: center;
+        align-self: stretch;
+        background-color: var(--bg);
+      }
+
+      #login-title {
+        margin-bottom: 15px;
+      }
+
+      #login-title * {
+        font-weight: 900;
+        font-size: 60px;
+        line-height: 1em;
+      }
+
+      #login-form {
+        margin-left: 25%;
+        text-align: left;
+        width: 300px;
+      }
+
+      .translate-off-screen {
+        transform: translateX(-150%);
+        transition: 2s;
+      }
+
+      .become-transparent {
+        pointer-events: none;
+        opacity: 0;
+        transition: 1s;
+      }
+    </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Login form animation
+        document
+          .querySelector("#login-form")
+          .addEventListener("submit", function (e) {
+            console.log(e);
+            e.preventDefault();
+            document.querySelector("#main-content").style.display = "flex";
+            document
+              .querySelector("#login-left")
+              .classList.add("translate-off-screen");
+            document
+              .querySelector("#login-right")
+              .classList.add("translate-off-screen");
+            document
+              .querySelector("#login-page")
+              .classList.add("become-transparent");
+          });
+
+        // Questionnaire form animation
+        document
+          .querySelector("#questionnaire-form")
+          .addEventListener("submit", function (e) {
+            console.log(e);
+            e.preventDefault();
+
+            creditscore = document.querySelector("input#credit-score");
+            income = document.querySelector("input#income");
+            appraisal = document.querySelector("input#appraisal-value");
+            downpayment = document.querySelector("input#down-payment");
+            debt = document.querySelector("input#debt");
+            mortgage = document.querySelector("input#mortgage");
+
+            LTV = (appraisal - downpayment) / appraisal;
+            DTI = (debt + mortgage) / income;
+            FEDTI = mortgage / income;
+
+            if (creditscore > 640 && LTV < 0.8 && DTI < 0.36 && FEDTI < 0.28) {
+              document
+                .querySelector("#questionnaire-page")
+                .classList.add("become-transparent");
+            }
+          });
+      });
+    </script>
   </head>
+
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <nav>
+      <img
+        src="imgs/fannie mae.png"
+        alt="logo"
+        class="center"
+        height="60px"
+        style="filter: invert()"
+      />
+      nav
+    </nav>
+    <div id="login-page">
+      <div id="login-left">
+        <img
+          id="login-image"
+          src="imgs/phil-hearing-IYfp2Ixe9nM-unsplash.jpg"
+        />
+      </div>
+      <div id="login-right">
+        <form id="login-form">
+          <div id="login-title">
+            <h1>Mortgage</h1>
+            <h1>Eligibility</h1>
+            <h1>Calculator</h1>
+          </div>
+          <!-- Details -->
+          <div class="form-control">
+            <label for="name" id="label-name"> Name </label>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+            <!-- Input Type Text -->
+            <input type="text" id="name" placeholder="Enter your name" />
+          </div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+          <div class="form-control">
+            <label for="email" id="label-email"> Email </label>
+
+            <!-- Input Type Email-->
+            <input type="email" id="email" placeholder="Enter your email" />
+          </div>
+
+          <button
+            type="submit"
+            value="submit"
+            id="login-submit"
+            class="form-button"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+    <div id="main-content">
+      <div class="background-flare-L"></div>
+      <div id="questionnaire-page">
+        <!-- Create Form -->
+        <form id="questionnaire-form">
+          <div class="form-control">
+            <label for="credit score" id="credit score">
+              What is your current credit score?
+            </label>
+
+            <!-- Input Type number -->
+            <input
+              type="number"
+              id="credit-score"
+              placeholder="Enter your credit score"
+              min="0"
+              required
+            />
+          </div>
+
+          <div class="form-control">
+            <label for="gross income" id="income">
+              What is your gross monthly income?
+            </label>
+
+            <!-- Input Type number -->
+            <input
+              type="number"
+              id="income"
+              placeholder="Enter your gross monthly income"
+              min="0"
+              required
+            />
+          </div>
+
+          <div class="form-control">
+            <label for="appraisal value" id="down payment">
+              What is your appraisal value?
+            </label>
+
+            <!-- Input Type number -->
+            <input
+              type="number"
+              id="appraisal-value"
+              placeholder="Enter your appraisal value"
+              min="0"
+              required
+            />
+          </div>
+
+          <div class="form-control">
+            <label for="down payment" id="down payment">
+              What is your anticipated down payment?
+            </label>
+
+            <!-- Input Type number -->
+            <input
+              type="number"
+              id="down-payment"
+              placeholder="Enter your anticipated down payment"
+              min="0"
+              required
+            />
+          </div>
+
+          <div class="form-control">
+            <label for="monthly payments" id="debt">
+              What are your monthly payments? (Not including your anticipated
+              mortgage payments)
+            </label>
+
+            <!-- Input Type number -->
+            <input
+              type="number"
+              id="debt"
+              placeholder="Enter your monthly payments (car, student loans, etc.)"
+              min="0"
+              required
+            />
+          </div>
+
+          <div class="form-control">
+            <label for="anticipated mortgage" id="mortgage">
+              What are your anticipated monthly mortgage payments?
+            </label>
+
+            <!-- Input Type number -->
+            <input
+              type="number"
+              id="mortgage"
+              placeholder="Enter your anticipated monthly mortgage"
+              min="0"
+              required
+            />
+          </div>
+
+          <!-- Multi-line Text Input Control -->
+          <button
+            type="submit"
+            value="submit"
+            id="questionnaire-submit"
+            class="form-button"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+      <div class="background-flare-R"></div>
+    </div>
   </body>
 </html>
