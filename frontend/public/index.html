@@ -1,265 +1,238 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="with=device-width, initial-scale=1.0" />
-    <title>Fannie Mae</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-
-  <body>
-    <section class="header">
-      <nav>
-        <img src="fannie mae.png" alt="logo" class="center" width="400px" />
-        <div class="nav-links">
-          <ul>
-            <li><a href="">HOME</a></li>
-            <li><a href="">SURVEY</a></li>
-            <li><a href="">SURVEY RESULTS</a></li>
-            <li><a href="">INFOGRAPHIC</a></li>
-          </ul>
-        </div>
-      </nav>
-
-      <div class="text-box">
-        <h1>Mortgage Eligibility Calculator</h1>
-        <p>Presented to you by Fannie Mae</p>
-        <a href="" class="hero-btn"
-          >Take the Mortgage Eligibility Survey Here</a
-        >
-      </div>
-    </section>
-  </body>
-</html>
-
-<!--Survey-->
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="with=device-width, initial-scale=1.0" />
-    <title>Fannie Mae</title>
-    <link rel="stylesheet" href="survey.css" />
-  </head>
-
-  <head>
-    <div class="main">
-      <p></p>
-    </div>
-
-    <section id="Fannie Mae Mortgage Eligibility Survey">
-      <title>Fannie Mae Mortgage Eligibility Survey</title>
-    </section>
+    <title>Fannie Mae Mortgage Eligibility Survey</title>
 
     <style>
-      /* Styling the Body element i.e. Color,
-          Font, Alignment */
+      @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;900&display=swap");
+
+      /* Reset margin and padding for every element */
+      * {
+@@ -26,13 +26,13 @@
+      /* Styling the Body element i.e. Color, 
+    Font, Alignment */
       body {
         background: linear-gradient(#586cba, #9aa8e1);
-        font-family: Arial, Helvetica, sans-serif;
+        background-color: var(--bg);
+        font-family: "Source Sans 3", sans-serif;
         text-align: center;
       }
 
       /* Styling the Form (Color, Padding, Shadow) */
       form {
+      #questionnaire-form {
         background-color: var(--bg);
-        max-width: 500px;
-        margin: 50px auto;
-        padding: 30px 20px;
-        box-shadow: 2px 5px 10px black;
-      }
-
-      /* Styling form-control Class */
-      .form-control {
-        text-align: left;
-        margin-bottom: 25px;
-      }
-
-      /* Styling form-control Label */
-      .form-control label {
-        display: block;
-        margin-bottom: 10px;
-      }
-
-      /* Styling form-control input,
-          select, textarea */
-      .form-control input,
-      .form-control select,
-      .form-control textarea {
-        border: 1px solid black;
-        border-radius: 2px;
-        font-family: Arial, Helvetica, sans-serif;
-        padding: 10px;
-        display: block;
-        width: 95%;
-      }
-
-      /* Styling form-control Radio
-          button and Checkbox */
-      .form-control input[type="radio"],
-      .form-control input[type="checkbox"] {
-        display: inline-block;
-        width: auto;
+        max-width: 600px;
+        margin: 0 auto;
+@@ -75,7 +75,7 @@
       }
 
       /* Styling Button */
-      button {
-        background-color: :root {
-          --bg: #fff;
-          --button: #3e53a6;
-          --nav: ;
-        }
-        border: 1px solid #777;
-        border-radius: 2px;
+      #questionnaire-submit {
+      .form-button {
+        background-color: var(--button);
+        color: var(--bg);
+        border: 0px;
+@@ -86,7 +86,7 @@
         font-family: inherit;
-        font-size: 21px;
-        display: block;
-        width: 100%;
-        margin-top: 50px;
-        margin-bottom: 20px;
+      }
+
+      #questionnaire-submit:hover {
+      .form-button:hover {
+        opacity: 0.8;
+        transition: 0.2s;
         cursor: pointer;
+@@ -97,7 +97,7 @@
+        height: 60px;
+      }
+
+      #questionnaire-body {
+      #questionnaire-page {
+        background-color: var(--bg);
+        width: 800px;
+        height: calc(100vh - 60px);
+@@ -111,35 +111,167 @@
+      .background-flare-R {
+        flex: 1;
+        height: calc(100vh - 60px);
+        background-color: red;
+      }
+
+      .background-flare-L {
+        background-color: linear-gradient(to left, var(--bg), transparent);
+        background: linear-gradient(to right, var(--button) 0%, var(--bg) 100%);
+      }
+
+      .background-flare-R {
+        background: linear-gradient(to right, var(--bg) 0%, var(--button) 100%);
+      }
+
+      #main-content {
+        display: flex;
+      }
+
+      #login-page {
+        background-color: var(--bg);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        right: 0;
+      }
+
+      #login-image {
+        height: 100%;
+        transform: translateX(-50%);
+      }
+
+      #login-left {
+        overflow: hidden;
+        text-align: center;
+        width: 300px;
+        height: calc(100vh - 60px);
+      }
+
+      #login-right {
+        flex: 1;
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+        justify-content: center;
+        align-self: stretch;
+        background-color: var(--bg);
+      }
+
+      #login-title {
+        margin-bottom: 15px;
+      }
+
+      #login-title * {
+        font-weight: 900;
+        font-size: 60px;
+        line-height: 1em;
+      }
+
+      #login-form {
+        margin-left: 25%;
+        text-align: left;
+        width: 300px;
+      }
+
+      .translate-off-screen {
+        transform: translateX(-150%);
+        transition: 2s;
+      }
+
+      .become-transparent {
+        pointer-events: none;
+        opacity: 0;
+        transition: 1s;
       }
     </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Login form animation
+        document
+          .querySelector("#login-form")
+          .addEventListener("submit", function (e) {
+            console.log(e);
+            e.preventDefault();
+            document
+              .querySelector("#login-left")
+              .classList.add("translate-off-screen");
+            document
+              .querySelector("#login-right")
+              .classList.add("translate-off-screen");
+            document
+              .querySelector("#login-page")
+              .classList.add("become-transparent");
+          });
+
+        // Questionnaire form animation
+        document
+          .querySelector("#questionnaire-form")
+          .addEventListener("submit", function (e) {
+            console.log(e);
+            e.preventDefault();
+            document
+              .querySelector("#questionnaire-page")
+              .classList.add("become-transparent");
+          });
+      });
+    </script>
   </head>
 
-  <head>
-    <div class="main">
-      <p></p>
+  <body>
+    <nav>
+      <img
+        src="fannie mae.png"
+        src="imgs/fannie mae.png"
+        alt="logo"
+        class="center"
+        height="60px"
+        style="filter: invert()"
+      />
+      nav
+    </nav>
+    <div id="login-page">
+      <div id="login-left">
+        <img
+          id="login-image"
+          src="imgs/phil-hearing-IYfp2Ixe9nM-unsplash.jpg"
+        />
+      </div>
+      <div id="login-right">
+        <form id="login-form">
+          <div id="login-title">
+            <h1>Mortgage</h1>
+            <h1>Eligibility</h1>
+            <h1>Calculator</h1>
+          </div>
+          <!-- Details -->
+          <div class="form-control">
+            <label for="name" id="label-name"> Name </label>
+
+            <!-- Input Type Text -->
+            <input type="text" id="name" placeholder="Enter your name" />
+          </div>
+
+          <div class="form-control">
+            <label for="email" id="label-email"> Email </label>
+
+            <!-- Input Type Email-->
+            <input type="email" id="email" placeholder="Enter your email" />
+          </div>
+
+          <button
+            type="submit"
+            value="submit"
+            id="login-submit"
+            class="form-button"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
+    <div id="main-content">
+      <div class="background-flare-L"></div>
+      <div id="questionnaire-body">
+      <div id="questionnaire-page">
+        <!-- Create Form -->
+        <form id="form">
+        <form id="questionnaire-form">
+          <div class="form-control">
+            <label for="credit score" id="credit score">
+              What is your current credit score?
+@@ -212,7 +344,12 @@
+          </div>
 
-    <section id="Fannie Mae Mortgage Eligibility">
-      <title>Fannie Mae Mortgage Eligibility Survey</title>
-    </section>
-
-  <body>
-    <h1>Fannie Mae Mortgage Eligibility Survey</h1>
-
-    <!-- Create Form -->
-    <form id="form">
-      <!-- Details -->
-      <div class="form-control">
-        <label for="name" id="label-name"> Name </label>
-
-        <!-- Input Type Text -->
-        <input type="text" id="name" placeholder="Enter your name" />
-      </div>
-
-      <div class="form-control">
-        <label for="email" id="label-email"> Email </label>
-
-        <!-- Input Type Email-->
-        <input type="email" id="email" placeholder="Enter your email" />
-      </div>
-
-      <div class="form-control">
-        <label for="credit score" id="credit score">
-          What is your current credit score?
-        </label>
-
-        <!-- Input Type number -->
-        <input
-          type="number"
-          id="credit score"
-          placeholder="Enter your credit score"
-        />
-      </div>
-
-      <div class="form-control">
-        <label for="gross income" id="income">
-          What is your gross monthly income?
-        </label>
-
-        <!-- Input Type number -->
-        <input
-          type="number"
-          id="income"
-          placeholder="Enter your gross monthly income"
-        />
-      </div>
-
-      <div class="form-control">
-        <label for="down payment" id="down payment">
-          What is your anticipated down payment?
-        </label>
-
-        <!-- Input Type number -->
-        <input
-          type="number"
-          id="down payment"
-          placeholder="Enter your anticipated down payment"
-        />
-      </div>
-
-      <div class="form-control">
-        <label for="monthly payments" id="debt">
-          What are your monthly payments? (Not including your anticipated
-          mortgage payments)
-        </label>
-
-        <!-- Input Type number -->
-        <input
-          type="number"
-          id="debt"
-          placeholder="Enter your monthly payments (car, student loans, etc.)"
-        />
-      </div>
-
-      <div class="form-control">
-        <label for="anticipated mortgage" id="mortgage">
-          What are your anticipated monthly mortgage payments?
-        </label>
-
-        <!-- Input Type number -->
-        <input
-          type="number"
-          id="mortgage"
-          placeholder="Enter your anticipated monthly mortgage"
-        />
-      </div>
-
-      <!-- Multi-line Text Input Control -->
-      <a href="" class="hero-btn">Submit</a>
-    </form>
-  </body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-</html>
-
-<!---Infographic-->
-
-<!DOCTYPE html>
-<html>
-  <body>
-    <head>
-      <meta name="viewport" content="with=device-width, initial-scale=1.0" />
-      <title>Fannie Mae</title>
-      <link rel="stylesheet" href="infographic.css" />
-    </head>
-
-      <head>
-    <div class="main">
-      <h2>Fannie Mae Mortgage Criteria Infographic</h2>
-    
-
-    <section id="Fannie Mae Mortgage Criteria Infographic">
-      <title>Fannie Mae Mortgage Criteria Infographic</title>
-    </section>
-  </div>
-
-    <div>
-  <img src="Fannie Mae Requirements.jpg" alt="Infographic" class="center" width="525"
-</div>
-    
-
-      </head>
-      <div>
-        <img src="fannie mae.png" alt="logo" class="center" width="400px" />
-        </div>
-  </body>
-</html>
+          <!-- Multi-line Text Input Control -->
+          <button type="submit" value="submit" id="questionnaire-submit">
+          <button
+            type="submit"
+            value="submit"
+            id="questionnaire-submit"
+            class="form-button"
+          >
+            Submit
+          </button>
+        </form>
