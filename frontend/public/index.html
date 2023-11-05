@@ -8,7 +8,7 @@
     <title>Fannie Mae Mortgage Eligibility Survey</title>
 
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;900&display=swap");
 
       /* Reset margin and padding for every element */
       * {
@@ -26,13 +26,13 @@
       /* Styling the Body element i.e. Color, 
     Font, Alignment */
       body {
-        background: linear-gradient(#586cba, #9aa8e1);
+        background-color: var(--bg);
         font-family: "Source Sans 3", sans-serif;
         text-align: center;
       }
 
       /* Styling the Form (Color, Padding, Shadow) */
-      form {
+      #questionnaire-form {
         background-color: var(--bg);
         max-width: 600px;
         margin: 0 auto;
@@ -75,7 +75,7 @@
       }
 
       /* Styling Button */
-      #questionnaire-submit {
+      .form-button {
         background-color: var(--button);
         color: var(--bg);
         border: 0px;
@@ -86,7 +86,7 @@
         font-family: inherit;
       }
 
-      #questionnaire-submit:hover {
+      .form-button:hover {
         opacity: 0.8;
         transition: 0.2s;
         cursor: pointer;
@@ -97,7 +97,7 @@
         height: 60px;
       }
 
-      #questionnaire-body {
+      #questionnaire-page {
         background-color: var(--bg);
         width: 800px;
         height: calc(100vh - 60px);
@@ -111,23 +111,115 @@
       .background-flare-R {
         flex: 1;
         height: calc(100vh - 60px);
-        background-color: red;
       }
 
       .background-flare-L {
-        background-color: linear-gradient(to left, var(--bg), transparent);
+        background: linear-gradient(to right, var(--button) 0%, var(--bg) 100%);
+      }
+
+      .background-flare-R {
+        background: linear-gradient(to right, var(--bg) 0%, var(--button) 100%);
       }
 
       #main-content {
         display: flex;
       }
+
+      #login-page {
+        background-color: var(--bg);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        right: 0;
+      }
+
+      #login-image {
+        height: 100%;
+        transform: translateX(-50%);
+      }
+
+      #login-left {
+        overflow: hidden;
+        text-align: center;
+        width: 300px;
+        height: calc(100vh - 60px);
+      }
+
+      #login-right {
+        flex: 1;
+        display: flex;
+        align-items: start;
+        flex-direction: column;
+        justify-content: center;
+        align-self: stretch;
+        background-color: var(--bg);
+      }
+
+      #login-title {
+        margin-bottom: 15px;
+      }
+
+      #login-title * {
+        font-weight: 900;
+        font-size: 60px;
+        line-height: 1em;
+      }
+
+      #login-form {
+        margin-left: 25%;
+        text-align: left;
+        width: 300px;
+      }
+
+      .translate-off-screen {
+        transform: translateX(-150%);
+        transition: 2s;
+      }
+
+      .become-transparent {
+        pointer-events: none;
+        opacity: 0;
+        transition: 1s;
+      }
     </style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Login form animation
+        document
+          .querySelector("#login-form")
+          .addEventListener("submit", function (e) {
+            console.log(e);
+            e.preventDefault();
+            document
+              .querySelector("#login-left")
+              .classList.add("translate-off-screen");
+            document
+              .querySelector("#login-right")
+              .classList.add("translate-off-screen");
+            document
+              .querySelector("#login-page")
+              .classList.add("become-transparent");
+          });
+
+        // Questionnaire form animation
+        document
+          .querySelector("#questionnaire-form")
+          .addEventListener("submit", function (e) {
+            console.log(e);
+            e.preventDefault();
+            document
+              .querySelector("#questionnaire-page")
+              .classList.add("become-transparent");
+          });
+      });
+    </script>
   </head>
 
   <body>
     <nav>
       <img
-        src="fannie mae.png"
+        src="imgs/fannie mae.png"
         alt="logo"
         class="center"
         height="60px"
@@ -135,11 +227,51 @@
       />
       nav
     </nav>
+    <div id="login-page">
+      <div id="login-left">
+        <img
+          id="login-image"
+          src="imgs/phil-hearing-IYfp2Ixe9nM-unsplash.jpg"
+        />
+      </div>
+      <div id="login-right">
+        <form id="login-form">
+          <div id="login-title">
+            <h1>Mortgage</h1>
+            <h1>Eligibility</h1>
+            <h1>Calculator</h1>
+          </div>
+          <!-- Details -->
+          <div class="form-control">
+            <label for="name" id="label-name"> Name </label>
+
+            <!-- Input Type Text -->
+            <input type="text" id="name" placeholder="Enter your name" />
+          </div>
+
+          <div class="form-control">
+            <label for="email" id="label-email"> Email </label>
+
+            <!-- Input Type Email-->
+            <input type="email" id="email" placeholder="Enter your email" />
+          </div>
+
+          <button
+            type="submit"
+            value="submit"
+            id="login-submit"
+            class="form-button"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
     <div id="main-content">
       <div class="background-flare-L"></div>
-      <div id="questionnaire-body">
+      <div id="questionnaire-page">
         <!-- Create Form -->
-        <form id="form">
+        <form id="questionnaire-form">
           <div class="form-control">
             <label for="credit score" id="credit score">
               What is your current credit score?
@@ -212,7 +344,12 @@
           </div>
 
           <!-- Multi-line Text Input Control -->
-          <button type="submit" value="submit" id="questionnaire-submit">
+          <button
+            type="submit"
+            value="submit"
+            id="questionnaire-submit"
+            class="form-button"
+          >
             Submit
           </button>
         </form>
