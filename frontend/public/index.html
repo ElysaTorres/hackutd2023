@@ -1,43 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+          <title>
+            Fannie Mae Mortgage Eligibility Survey
+        </title>
+
+        <style>
+ 
+          /* Styling the Body element i.e. Color, 
+          Font, Alignment */ 
+          body {
+              background:         linear-gradient(#586cba, #9aa8e1);
+              font-family: Verdana;
+              text-align: center;
+          }
+   
+          /* Styling the Form (Color, Padding, Shadow) */
+          form {
+              background-color: #fff;
+              max-width: 500px;
+              margin: 50px auto;
+              padding: 30px 20px;
+              box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+          }
+   
+          /* Styling form-control Class */
+          .form-control {
+              text-align: left;
+              margin-bottom: 25px;
+          }
+   
+          /* Styling form-control Label */ 
+          .form-control label {
+              display: block;
+              margin-bottom: 10px;
+          }
+   
+          /* Styling form-control input, 
+          select, textarea */
+          .form-control input,
+          .form-control select,
+          .form-control textarea {
+              border: 1px solid #777;
+              border-radius: 2px;
+              font-family: inherit;
+              padding: 10px;
+              display: block;
+              width: 95%;
+          }
+   
+          /* Styling form-control Radio 
+          button and Checkbox */
+          .form-control input[type="radio"],
+          .form-control input[type="checkbox"] {
+              display: inline-block;
+              width: auto;
+          }
+   
+          /* Styling Button */
+          button {
+              background-color: #6377c5;
+              border: 1px solid #777;
+              border-radius: 2px;
+              font-family: inherit;
+              font-size: 21px;
+              display: block;
+              width: 100%;
+              margin-top: 50px;
+              margin-bottom: 20px;
+          }
+      </style>
+      </head>
+
+      <body>
+        <h1>Fannie Mae Mortgage Eligibility Survey</h1>
+      
+        <!-- Create Form -->
+        <form id="form">
+     
+            <!-- Details -->
+            <div class="form-control">
+                <label for="name" id="label-name">
+                    Name
+                </label>
+     
+                <!-- Input Type Text -->
+                <input type="text"
+                       id="name"
+                       placeholder="Enter your name" />
+            </div>
+      
+            <div class="form-control">
+                <label for="email" id="label-email">
+                    Email
+                </label>
+     
+                <!-- Input Type Email-->
+                <input type="email"
+                       id="email"
+                       placeholder="Enter your email" />
+            </div>
+      
+            <div class="form-control">
+                <label for="credit score" id="credit score">
+                    What is your current credit score?
+                </label>
+     
+                <!-- Input Type number -->
+                <input type="number"
+                       id="credit score"
+                       placeholder="Enter your credit score" />
+            </div>
+      
+            <div class="form-control">
+              <label for="gross income" id="income">
+                  What is your gross monthly income?
+              </label>
+   
+              <!-- Input Type number -->
+              <input type="number"
+                     id="income"
+                     placeholder="Enter your gross monthly income" />
+          </div>
+
+          <div class="form-control">
+            <label for="down payment" id="down payment">
+                What is your anticipated down payment?
+            </label>
+ 
+            <!-- Input Type number -->
+            <input type="number"
+                   id="down payment"
+                   placeholder="Enter your anticipated down payment" />
+        </div>
+
+            <div class="form-control">
+              <label for="monthly payments" id="debt">
+                  What are your monthly payments? (Not including your anticipated mortgage payments)
+              </label>
+   
+              <!-- Input Type number -->
+              <input type="number"
+                     id="debt"
+                     placeholder="Enter your monthly payments (car, student loans, etc.)" />
+          </div>
+
+          <div class="form-control">
+            <label for="anticipated mortgage" id="mortgage">
+                What are your anticipated monthly mortgage payments?
+            </label>
+ 
+            <!-- Input Type number -->
+            <input type="number"
+                   id="mortgage"
+                   placeholder="Enter your anticipated monthly mortgage" />
+        </div>
+
+            <!-- Multi-line Text Input Control -->
+            <button type="submit" value="submit">
+                Submit
+            </button>
+        </form>
+    </body>
+
+    <img src="fannie mae.png" alt="logo"
+    class="center"
+    width="400px"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
-</html>
+    </html>
